@@ -1,0 +1,216 @@
+[training@localhost ~]$ sqoop help
+usage: sqoop COMMAND [ARGS]
+
+Available commands:
+  codegen            Generate code to interact with database records
+  create-hive-table  Import a table definition into Hive
+  eval               Evaluate a SQL statement and display the results
+  export             Export an HDFS directory to a database table
+  help               List available commands
+  import             Import a table from a database to HDFS
+  import-all-tables  Import tables from a database to HDFS
+  job                Work with saved jobs
+  list-databases     List available databases on a server
+  list-tables        List available tables in a database
+  merge              Merge results of incremental imports
+  metastore          Run a standalone Sqoop metastore
+  version            Display version information
+
+See 'sqoop help COMMAND' for information on a specific command.
+[training@localhost ~]$ sqoop version
+Sqoop 1.4.1-cdh4.1.1
+git commit id b0c34454234e5246b4ef345694d7e1a5904f00fe
+Compiled by jenkins on Tue Oct 16 12:13:07 PDT 2012
+[training@localhost ~]$ sqoop list-databases\
+> --connnect jdbc:mysql://localhost\
+> --username training --password training
+No such sqoop tool: list-databases--connnect. See 'sqoop help'.
+[training@localhost ~]$ sqoop list-databases --connnect jdbc:mysql://localhost--username training --password training23/02/16 12:38:01 ERROR tool.BaseSqoopTool: Error parsing arguments for list-databases:
+23/02/16 12:38:01 ERROR tool.BaseSqoopTool: Unrecognized argument: --connnect
+23/02/16 12:38:01 ERROR tool.BaseSqoopTool: Unrecognized argument: jdbc:mysql://localhost--username
+23/02/16 12:38:01 ERROR tool.BaseSqoopTool: Unrecognized argument: training
+23/02/16 12:38:01 ERROR tool.BaseSqoopTool: Unrecognized argument: --password
+23/02/16 12:38:01 ERROR tool.BaseSqoopTool: Unrecognized argument: training
+
+Try --help for usage instructions.
+usage: sqoop list-databases [GENERIC-ARGS] [TOOL-ARGS]
+
+Common arguments:
+   --connect <jdbc-uri>                         Specify JDBC connect
+                                                string
+   --connection-manager <class-name>            Specify connection manager
+                                                class name
+   --connection-param-file <properties-file>    Specify connection
+                                                parameters file
+   --driver <class-name>                        Manually specify JDBC
+                                                driver class to use
+   --hadoop-home <dir>                          Override $HADOOP_HOME
+   --help                                       Print usage instructions
+-P                                              Read password from console
+   --password <password>                        Set authentication
+                                                password
+   --username <username>                        Set authentication
+                                                username
+   --verbose                                    Print more information
+                                                while working
+
+Generic Hadoop command-line arguments:
+(must preceed any tool-specific arguments)
+Generic options supported are
+-conf <configuration file>     specify an application configuration file
+-D <property=value>            use value for given property
+-fs <local|namenode:port>      specify a namenode
+-jt <local|jobtracker:port>    specify a job tracker
+-files <comma separated list of files>    specify comma separated files to be copied to the map reduce cluster
+-libjars <comma separated list of jars>    specify comma separated jar files to include in the classpath.
+-archives <comma separated list of archives>    specify comma separated archives to be unarchived on the compute machines.
+
+The general command line syntax is
+bin/hadoop command [genericOptions] [commandOptions]
+
+[training@localhost ~]$ sqoop list-databases --connnect jdbc:mysql://localhost --username training --password training
+23/02/16 12:38:11 ERROR tool.BaseSqoopTool: Error parsing arguments for list-databases:
+23/02/16 12:38:11 ERROR tool.BaseSqoopTool: Unrecognized argument: --connnect
+23/02/16 12:38:11 ERROR tool.BaseSqoopTool: Unrecognized argument: jdbc:mysql://localhost
+23/02/16 12:38:11 ERROR tool.BaseSqoopTool: Unrecognized argument: --username
+23/02/16 12:38:11 ERROR tool.BaseSqoopTool: Unrecognized argument: training
+23/02/16 12:38:11 ERROR tool.BaseSqoopTool: Unrecognized argument: --password
+23/02/16 12:38:11 ERROR tool.BaseSqoopTool: Unrecognized argument: training
+
+Try --help for usage instructions.
+usage: sqoop list-databases [GENERIC-ARGS] [TOOL-ARGS]
+
+Common arguments:
+   --connect <jdbc-uri>                         Specify JDBC connect
+                                                string
+   --connection-manager <class-name>            Specify connection manager
+                                                class name
+   --connection-param-file <properties-file>    Specify connection
+                                                parameters file
+   --driver <class-name>                        Manually specify JDBC
+                                                driver class to use
+   --hadoop-home <dir>                          Override $HADOOP_HOME
+   --help                                       Print usage instructions
+-P                                              Read password from console
+   --password <password>                        Set authentication
+                                                password
+   --username <username>                        Set authentication
+                                                username
+   --verbose                                    Print more information
+                                                while working
+
+Generic Hadoop command-line arguments:
+(must preceed any tool-specific arguments)
+Generic options supported are
+-conf <configuration file>     specify an application configuration file
+-D <property=value>            use value for given property
+-fs <local|namenode:port>      specify a namenode
+-jt <local|jobtracker:port>    specify a job tracker
+-files <comma separated list of files>    specify comma separated files to be copied to the map reduce cluster
+-libjars <comma separated list of jars>    specify comma separated jar files to include in the classpath.
+-archives <comma separated list of archives>    specify comma separated archives to be unarchived on the compute machines.
+
+The general command line syntax is
+bin/hadoop command [genericOptions] [commandOptions]
+
+[training@localhost ~]$ sqoop list-databases --connect jdbc:mysql://localhost --username training --password training
+23/02/16 12:39:01 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
+23/02/16 12:39:01 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+information_schema
+hue
+metastore
+movielens
+mysql
+test
+training
+[training@localhost ~]$ sqoop list-tables\
+> connect jdbc:mysql://localhost\
+> --username training --password training
+No such sqoop tool: list-tablesconnect. See 'sqoop help'.
+[training@localhost ~]$ sqoop list-tables --connect jdbc:mysql://localhost --username training --password training
+23/02/16 12:41:07 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
+23/02/16 12:41:07 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+[training@localhost ~]$ sqoop list-tables --connect jdbc:mysql://localhost/movielens --username training --password training
+23/02/16 12:41:43 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
+23/02/16 12:41:43 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+genre
+movie
+moviegenre
+movierating
+occupation
+user
+[training@localhost ~]$ sqoop import\
+> --connect jdbc:mysql://localhost/movielens\
+> --table movie --fields-terminated-by '\t'\
+> --username training --password training
+No such sqoop tool: import--connect. See 'sqoop help'.
+[training@localhost ~]$ sqoop import --connect jdbc:mysql://localhost/movielens --table movie --fields-terminated-by '\t' --username training --password training
+23/02/16 12:45:54 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
+23/02/16 12:45:55 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+23/02/16 12:45:55 INFO tool.CodeGenTool: Beginning code generation
+23/02/16 12:45:55 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `movie` AS t LIMIT 1
+23/02/16 12:45:55 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `movie` AS t LIMIT 1
+23/02/16 12:45:55 INFO orm.CompilationManager: HADOOP_HOME is /usr/lib/hadoop
+Note: /tmp/sqoop-training/compile/dd98aa27ef1828559478d6743fc308ac/movie.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+23/02/16 12:45:57 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-training/compile/dd98aa27ef1828559478d6743fc308ac/movie.jar
+23/02/16 12:45:57 WARN manager.MySQLManager: It looks like you are importing from mysql.
+23/02/16 12:45:57 WARN manager.MySQLManager: This transfer can be faster! Use the --direct
+23/02/16 12:45:57 WARN manager.MySQLManager: option to exercise a MySQL-specific fast path.
+23/02/16 12:45:57 INFO manager.MySQLManager: Setting zero DATETIME behavior to convertToNull (mysql)
+23/02/16 12:45:58 INFO mapreduce.ImportJobBase: Beginning import of movie
+23/02/16 12:45:59 WARN mapred.JobClient: Use GenericOptionsParser for parsing the arguments. Applications should implement Tool for the same.
+23/02/16 12:46:00 INFO db.DataDrivenDBInputFormat: BoundingValsQuery: SELECT MIN(`id`), MAX(`id`) FROM `movie`
+23/02/16 12:46:00 INFO mapred.JobClient: Running job: job_202302160945_0001
+23/02/16 12:46:01 INFO mapred.JobClient:  map 0% reduce 0%
+23/02/16 12:46:10 INFO mapred.JobClient:  map 25% reduce 0%
+23/02/16 12:46:11 INFO mapred.JobClient:  map 50% reduce 0%
+23/02/16 12:46:15 INFO mapred.JobClient:  map 75% reduce 0%
+23/02/16 12:46:16 INFO mapred.JobClient:  map 100% reduce 0%
+23/02/16 12:46:17 INFO mapred.JobClient: Job complete: job_202302160945_0001
+23/02/16 12:46:17 INFO mapred.JobClient: Counters: 23
+23/02/16 12:46:17 INFO mapred.JobClient:   File System Counters
+23/02/16 12:46:17 INFO mapred.JobClient:     FILE: Number of bytes read=0
+23/02/16 12:46:17 INFO mapred.JobClient:     FILE: Number of bytes written=796652
+23/02/16 12:46:17 INFO mapred.JobClient:     FILE: Number of read operations=0
+23/02/16 12:46:17 INFO mapred.JobClient:     FILE: Number of large read operations=0
+23/02/16 12:46:17 INFO mapred.JobClient:     FILE: Number of write operations=0
+23/02/16 12:46:17 INFO mapred.JobClient:     HDFS: Number of bytes read=412
+23/02/16 12:46:17 INFO mapred.JobClient:     HDFS: Number of bytes written=102052
+23/02/16 12:46:17 INFO mapred.JobClient:     HDFS: Number of read operations=4
+23/02/16 12:46:17 INFO mapred.JobClient:     HDFS: Number of large read operations=0
+23/02/16 12:46:17 INFO mapred.JobClient:     HDFS: Number of write operations=4
+23/02/16 12:46:17 INFO mapred.JobClient:   Job Counters 
+23/02/16 12:46:17 INFO mapred.JobClient:     Launched map tasks=4
+23/02/16 12:46:17 INFO mapred.JobClient:     Total time spent by all maps in occupied slots (ms)=21449
+23/02/16 12:46:17 INFO mapred.JobClient:     Total time spent by all reduces in occupied slots (ms)=0
+23/02/16 12:46:17 INFO mapred.JobClient:     Total time spent by all maps waiting after reserving slots (ms)=0
+23/02/16 12:46:17 INFO mapred.JobClient:     Total time spent by all reduces waiting after reserving slots (ms)=0
+23/02/16 12:46:17 INFO mapred.JobClient:   Map-Reduce Framework
+23/02/16 12:46:17 INFO mapred.JobClient:     Map input records=3881
+23/02/16 12:46:17 INFO mapred.JobClient:     Map output records=3881
+23/02/16 12:46:17 INFO mapred.JobClient:     Input split bytes=412
+23/02/16 12:46:17 INFO mapred.JobClient:     Spilled Records=0
+23/02/16 12:46:17 INFO mapred.JobClient:     CPU time spent (ms)=3610
+23/02/16 12:46:17 INFO mapred.JobClient:     Physical memory (bytes) snapshot=367284224
+23/02/16 12:46:17 INFO mapred.JobClient:     Virtual memory (bytes) snapshot=1621364736
+23/02/16 12:46:17 INFO mapred.JobClient:     Total committed heap usage (bytes)=271450112
+23/02/16 12:46:17 INFO mapreduce.ImportJobBase: Transferred 0 bytes in 18.2406 seconds (0 bytes/sec)
+23/02/16 12:46:17 INFO mapreduce.ImportJobBase: Retrieved 3881 records.
+[training@localhost ~]$ sqoop eval --connect jdbc:mysql://localhost/movielens --username training --password training --query "select * from movie where id > 100 limit 10"
+23/02/16 13:01:46 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
+23/02/16 13:01:46 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+-----------------------------------------------
+| id          | name                 | year   | 
+-----------------------------------------------
+| 101         | Bottle Rocket        | 1996   | 
+| 102         | Mr. Wrong            | 1996   | 
+| 103         | Unforgettable        | 1996   | 
+| 104         | Happy Gilmore        | 1996   | 
+| 105         | Bridges of Madison County, The | 1995   | 
+| 106         | Nobody Loves Me      | 0      | 
+| 107         | Muppet Treasure Island | 1996   | 
+| 108         | Catwalk              | 1995   | 
+| 109         | Headless Body in Topless Bar | 1995   | 
+| 110         | Braveheart           | 1995   | 
+-----------------------------------------------
